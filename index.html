@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="flow-divergence-sampler">
+  <meta name="keywords" content="FDS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Training-Free Refinement of Flow Matching with Divergence-based Sampling</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.8.0/gradio.js"></script>
+
+  <style>
+    #project-previews {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+      padding: 20px;
+    }
+
+    .project {
+      width: 300px;
+      /* Adjust as needed */
+      height: 320px;
+      /* Adjust as needed */
+      border: 1px solid #ddd;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .project img {
+      width: 100%;
+      /* Make image fill the container */
+      height: 200px;
+      /* Adjust height as needed */
+      object-fit: cover;
+	  
+    }
+
+    .project h3,
+    .project p {
+      margin: 5px 0;
+    }
+
+    /* Hover effect */
+    .project:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #project-previews a.project {
+      text-decoration: none;
+      /* Remove underline from links */
+      color: inherit;
+      /* Use the parent's text color */
+      display: block;
+      /* Make the anchor tag behave like a block element */
+    }
+
+    #project-previews a.project:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .project {
+      width: 300px;
+      height: 320px;
+      /* Remove the border */
+      border: none;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .viewport-line {
+      border: 0;
+      border-top: 1px solid rgba(220, 220, 220, 0.5);
+      width: 100vw;                          /* 화면 전체 폭 */
+      margin-left: calc(50% - 50vw);         /* 컨테이너 가운데에서 화면 기준으로 확장 */
+      margin-right: calc(50% - 50vw);
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+
+    .carousel .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30vw;     
+      min-height: 180px;
+      max-height: 400px;
+      border: none;
+    }
+
+    .carousel .item .box {
+      display: flex;
+      justify-content: center;
+	flex-direction: column; 
+      align-items: center;
+      height: 20vw;
+      max-height: 370px;
+      border: none;
+		 background-color: transparent; 
+    }
+    .carousel .item .tbox {
+      display: flex;
+      justify-content: center;
+	flex-direction: column; 
+      align-items: center;
+      height: 00px;
+      border: none;
+		 background-color: transparent; 
+		max-width:60%
+    }
+
+
+    .carousel .item .rbox {
+      display: flex;
+      justify-content: center;
+	flex-direction: row; 
+      align-items: center;
+      height: 300px;
+      border: none;
+		 background-color: transparent; 
+		/* max-width:60% */
+    }
+.carousel .item .textbox {
+  display: flex;
+  justify-content: center;
+  /* flex-direction: row;  */
+  align-items: center;
+  height: 250px;
+  border: none;
+  background-color: transparent;
+
+  max-width: 35%;          
+  /* width: 100%;                  */
+  text-align: center;        
+  white-space: normal;          
+  overflow-wrap: break-word;   
+  word-wrap: break-word;    
+margin: 1px 1px; 
+}
+ .carousel .item h4 {
+    margin: 0 0 7px;
+    font-size: 18px;
+    letter-spacing: .2px;
+	  white-space: pre-line;
+	  text-align: center; 
+  }
+	  
+.carousel .item h4 .title-text {
+  font-size: 21px;     /* 원하는 크기로 설정 */
+	color: #000000; 
+}
+
+    .carousel .item img {
+      max-width: 80%;
+	  /* max-height: 85%;  */
+      /* height: 100%; */
+      /* Make the image fill the container's height */
+      object-fit: cover;
+		margin: 1px 0; 
+      /* Ensures the image covers the container while maintaining aspect ratio */
+    }
+
+.carousel .item .box .layout-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 10px; /* 셀 사이 간격 */
+        table-layout: fixed; /* 셀 너비 고정 (오디오 튀어나감 방지) */
+    }
+.carousel .item .box .layout-table .input-cell {
+        width: 25%; /* 왼쪽 25% */
+        vertical-align: middle;
+    }
+   .carousel .item .box .layout-table .output-cell {
+        width: 75%; /* 오른쪽 75% */
+        vertical-align: middle;
+    }
+   .carousel .item .box .layout-table .output-cell .inner-table {
+        width: 100%;
+        table-layout: fixed;
+        text-align: center;
+    }
+ .carousel .item .box .layout-table .output-cell .inner-table  .audio-player {
+        width: 95%; /* 셀 안에서 꽉 차게 */
+        height: 40px;
+    }
+    /* 텍스트 박스 스타일 */
+  .carousel .item .box .layout-table .input-cell .text-condition-box {
+        background-color: #f4f4f4;
+        padding: 15px;
+        border-radius: 5px;
+        color: #333333; /* 글자색 검정 강제 */
+        font-style: italic;
+        text-align: center;
+        word-wrap: break-word; /* 긴 단어 줄바꿈 */
+    }
+
+    .carousel .item .box .layout-table .input-cell .text-condition-box {
+       display: flex;
+      justify-content: center;
+  	flex-direction: column; 
+      align-items: center;
+      height: 00px;
+      border: none;
+		 background-color: transparent; 
+		max-width:60%
+    }
+
+    .carousel .item .box .layout-table .output-cell .inner-table  .model-name-cell {
+      display: flex;
+      justify-content: center;
+	flex-direction: column; 
+      align-items: center;
+      height: 00px;
+      border: none;
+		 background-color: transparent; 
+		max-width:60%
+    }
+
+    .prompt-with-plus{
+  text-align: center;      /* 필요하면 */
+}
+
+.prompt-with-plus .plus-sign{
+  display: block;          /* 이게 핵심: 다음 줄로 */
+  font-weight: 900;
+  font-size: 2.3em;
+  color: #ff2563;
+  margin-top: 1px;
+  line-height: 0.1;
+}
+
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      bulmaCarousel.attach('#results-carousel', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        infinite: true,
+      });
+    });
+  </script>
+
+
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FlowBind: Efficient Any-to-Any Generation with Bidirectional Flows</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://yeonwoo378.github.io">Yeonwoo Cha</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://seminkim.github.io/">Semin Kim</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/jinhyeonkwon">Jinhyeon Kwon</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://maga33.github.io/">Seunghoon Hong</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">KAIST</span> 
+            <!-- <span class="content has-text-justified"><sup>*</sup> Equal contribution</span> -->
+          </div>
+          <p><sup>*</sup> Equal contribution</p>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2512.15420"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2512.15420"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/yeonwoo378/flowbind"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/yeonwoo378/flowbind"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-file"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-body">
+      <!-- <h2 class="title is-3 has-text-centered">tl; dr</h2> -->
+      <div class="container is-max-desktop has-text-centered">
+          <h3 class="title is-5">TL;DR: We propose an efficient flow-based multimodal any-to-any generation model with bidirectional flows.</h3> 
+          <div class="content has-text-centered">
+              <img src="./static/images/FlowBind_fig1.png" class="interpolation-image"/>
+          </div>
+          An overview of FlowBind. During training, we jointly learn the shared latent and per-modality drift networks in a single stage. At inference, the learned drift networks perform flexible any-to-any generation by solving per-modality ODEs forward and backward in time.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+    <div class="hero-body">
+        <!-- <h2 class="title is-3 has-text-centered">tl; dr</h2> -->
+        <div class="container is-max-desktop has-text-centered">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+          <p>
+            Any-to-any generation seeks to translate between arbitrary subsets of modalities, enabling flexible cross-modal synthesis. Despite recent success, existing flow-based approaches are challenged by its inefficiency, as they require large-scale datasets often with restrictive pairing constraints, incur high computation cost from modeling joint distribution, and multi-stage training pipeline. We propose <strong>FlowBind</strong>, an efficient framework for any-to-any generation. Our approach is distinguished by its simplicity: it learns a shared latent space capturing cross-modal information, with modality-specific invertible flows bridging this latent to each modality. Both components are optimized jointly under a single flow-matching objective, and at inference the invertible flows act as encoders and decoders for direct translation across modalities. By factorizing interactions through the shared latent, FlowBind naturally leverages arbitrary subsets of modalities for training, and achieves competitive generation quality while substantially reducing data requirements and computational cost. Experiments on text, image, and audio demonstrate that FlowBind attains comparable quality while requiring up to 6× fewer parameters and training 10× faster than prior methods.
+          </p>
+
+        </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+      <div class="container content has-text-centered">
+          <h3 class="title is-5">FlowBind achieves strong performance across various cross-mdodal generation settings, including <a href="#one-to-one">one-to-one</a>, <a href="#one-to-many">one-to-many</a>, and <a href="#many-to-one">many-to-one</a> generation.</h3> 
+          <div class="content has-text-centered">
+              <img src="./static/images/manymany.png" class="interpolation-image"/>
+          </div>
+          <!-- An overview of FlowBind. During training, we jointly learn the shared latent and per-modality drift networks in a single stage. At inference, the learned drift networks perform flexible any-to-any generation by solving per-modality ODEs forward and backward in time -->
+      </div>
+
+
+    <div class="columns is-centered">
+
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container content has-text-centered">
+      <h3 class="title is-4">Shared Latent Space of FlowBind</h3>
+
+      <p>
+        FlowBind’s shared latent space supports smooth, semantically meaningful interpolations
+        across modalities, revealing well-aligned multimodal representation.
+      </p>
+
+      <figure class="image is-inline-block interpolation-figure">
+        <img src="./static/images/interp.png" alt="Latent interpolation results" class="interpolation-image" />
+        <figcaption class="has-text-grey is-size-6 mt-2">
+          Data with blue boundary inidcates the input, showing our shared latent representation unifies information from all input modalities.
+        </figcaption>
+      </figure>
+
+      
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section py-2" id="many-to-one">
+  <div class="container has-text-centered">
+    <h3 class="title is-3 mb-2">Many-to-One Generation</h3>
+    <p class="mt-0 mb-0">
+      FlowBind can take multiple inputs—such as text, images, and audio—and generate outputs that are aligned with all provided modalities.
+    </p>
+  </div>
+</section> -->
+
+<section class="section py-2" id="many-to-one">
+  <div class="container has-text-centered">
+    <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
+      <h3 class="title is-3 mb-2">Many-to-One Generation</h3>
+      <p class="mt-0 mb-0">
+        FlowBind can take multiple inputs and generate outputs that are aligned with all provided modalities.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- <hr class="viewport-line"> -->
+
+
+<hr class="viewport-line">
+
+
+
+<section class="section py-2" id="one-to-many">
+  <div class="container has-text-centered">
+    <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
+      <h3 class="title is-3 mb-2">One-to-Many Generation</h3>
+      <p class="mt-0 mb-0">
+        FlowBind can take a single and generates multiple outputs of different modalities.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- <hr class="viewport-line"> -->
+
+
+
+<section class="section py-2" id="one-to-one">
+  <div class="container has-text-centered">
+    <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
+      <h3 class="title is-3 mb-2">One-to-One Generation</h3>
+      <p class="mt-0 mb-0">
+        FlowBind supports all six one-to-one cross-modal generation directions among text, images, and audio.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- <hr class="viewport-line"> -->
+
+
+
+
+
+
+
+
+
+
+<hr class="viewport-line">
+
+
+<section class="section">
+  <div class="container content">
+    <h3 class="title is-4">References</h3>
+
+    <ol>
+      <li>
+        <strong>Any-to-Any Generation via Composable Diffusion</strong><br>
+        <a href="https://arxiv.org/abs/2305.10855" target="_blank" rel="noopener noreferrer">
+          arXiv:2305.10855
+        </a>
+      </li>
+
+      <li>
+        <strong>OmniFlow: Any-to-Any Generation with Multi-Modal Rectified Flows</strong><br>
+        <a href="https://arxiv.org/abs/2412.01169" target="_blank" rel="noopener noreferrer">
+          arXiv:2412.01169
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+	
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <p>If you find our work helpful, please cite the following paper.</p>
+<pre><code>@misc{cha2025flowbind,
+  title={Training-Free Refinement of Flow Matching with Divergence-based Sampling},
+  author={Cha, Yeonwoo and Kim, Semin and Kwon, Jinhyeon and Hong, Seunghoon},
+  Eprint={arXiv:2512.15420},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2512.15420">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/yeonwoo378/flowbind" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+   
+  </div>
+</footer>
+
+</body>
+</html>
