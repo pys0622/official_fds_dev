@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+---
+---
 <html>
 <head>
   <meta charset="utf-8">
@@ -402,44 +404,31 @@ margin: 1px 1px;
               <img src="./static/images/fds_qual_main.png" class="interpolation-image"/>
           </div>
       </div>
-
-
     <div class="columns is-centered">
 
   </div>
 </section>
 
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container content has-text-centered">
-      <h3 class="title is-4">FDS on Text-to-Image</h3>
-
-      <p>
-       result result result
+<section class="section py-2" id="text-to-image">
+  <div class="container has-text-centered">
+    <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
+      <h3 class="title is-3 mb-2">Text-to-Image Generation</h3>
+      <p class="mt-0 mb-0">
+        FDS impoves visual quality of text-to image generation.
       </p>
-
-      <figure class="image is-inline-block interpolation-figure">
-        <img src="./static/images/interp.png" alt="Latent interpolation results" class="interpolation-image" />
-        <figcaption class="has-text-grey is-size-6 mt-2">
-          Data with blue boundary inidcates the input, showing our shared latent representation unifies information from all input modalities.
-        </figcaption>
-      </figure>
-
-      
     </div>
   </div>
 </section>
 
-<!-- <section class="section py-2" id="many-to-one">
-  <div class="container has-text-centered">
-    <h3 class="title is-3 mb-2">Many-to-One Generation</h3>
-    <p class="mt-0 mb-0">
-      FlowBind can take multiple inputs—such as text, images, and audio—and generate outputs that are aligned with all provided modalities.
-    </p>
-  </div>
-</section> -->
-
+<div id=text-to-image-container></div>
+<script>
+fetch('sections/text_to_image.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('text-to-image-container').innerHTML = data;
+  });
+</script>
 
 <hr class="viewport-line">
 
