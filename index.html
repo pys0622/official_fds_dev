@@ -357,11 +357,13 @@ margin: 1px 1px;
     <div class="hero-body">
       <!-- <h2 class="title is-3 has-text-centered">tl; dr</h2> -->
       <div class="container is-max-desktop has-text-centered">
-          <h3 class="title is-5">TL;DR: We propose an efficient flow-based multimodal any-to-any generation model with bidirectional flows.</h3> 
+          <h3 class="title is-5">FDS: We propose a training-free divergence-based flow matching sampler to refine generation.</h3> 
           <div class="content has-text-centered">
-              <img src="./static/images/FlowBind_fig1.png" class="interpolation-image"/>
+              <img src="./static/images/divergence_figure1_v2.png" class="interpolation-image"/>
           </div>
-          An overview of FlowBind. During training, we jointly learn the shared latent and per-modality drift networks in a single stage. At inference, the learned drift networks perform flexible any-to-any generation by solving per-modality ODEs forward and backward in time.
+          An overview of FDS.  Our framework refines intermediate states to avoid high-discrepancy regions. 
+          In standard settings, severely conflicting sample-wise velocities can drive the marginal velocity toward low-density region, leading to degraded samples (red cross).
+          To counteract this, our framework effectively steers the trajectory toward a reliable, low-discrepancy region (blue circle).
       </div>
     </div>
   </div>
@@ -375,11 +377,36 @@ margin: 1px 1px;
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
           <p>
-            Any-to-any generation seeks to translate between arbitrary subsets of modalities, enabling flexible cross-modal synthesis. Despite recent success, existing flow-based approaches are challenged by its inefficiency, as they require large-scale datasets often with restrictive pairing constraints, incur high computation cost from modeling joint distribution, and multi-stage training pipeline. We propose <strong>FlowBind</strong>, an efficient framework for any-to-any generation. Our approach is distinguished by its simplicity: it learns a shared latent space capturing cross-modal information, with modality-specific invertible flows bridging this latent to each modality. Both components are optimized jointly under a single flow-matching objective, and at inference the invertible flows act as encoders and decoders for direct translation across modalities. By factorizing interactions through the shared latent, FlowBind naturally leverages arbitrary subsets of modalities for training, and achieves competitive generation quality while substantially reducing data requirements and computational cost. Experiments on text, image, and audio demonstrate that FlowBind attains comparable quality while requiring up to 6× fewer parameters and training 10× faster than prior methods.
+            Flow Matching models a target distribution by learning a marginal velocity field, defined as the average of sample-wise velocities connecting each sample from a simple prior to the target data.
+            When multiple sample-wise velocities conflict at the same intermediate state, this averaged velocity can misguide samples toward low-density regions, leading to  degraded generation quality. 
+            To address this issue, we propose <strong>Flow Divergence Sampler (FDS)</strong>, a training-free framework by refining intermediate states before each solver step.
+            Our key finding reveals that the severity of this misguidance is quantified by the divergence of the marginal velocity field that is readily computable during inference with a well-optimized model.
+            
+            FDS exploits this signal to steer states toward less ambiguous regions. 
+            As a plug-and-play framework compatible with standard solvers and off-the-shelf flow backbones, FDS consistently improves fidelity across various generation tasks including text-to-image synthesis, and inverse problems.
           </p>
 
         </div>
     </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+      <div class="container content has-text-centered">
+          <h3 class="title is-5">
+            FDS successfully synthesizes fine-grained details that a naive high-NFE baseline cannot produce.
+            <br><br>
+            <!--Todo a href="#one-to-one">one-to-one</a>, <a href="#one-to-many">one-to-many</a>, and <a href="#many-to-one">many-to-one</a> generation.</h3-->
+          <div class="content has-text-centered">
+              <img src="./static/images/fds_qual_main.png" class="interpolation-image"/>
+          </div>
+      </div>
+
+
+    <div class="columns is-centered">
+
+  </div>
 </section>
 
 
