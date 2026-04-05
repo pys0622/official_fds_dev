@@ -118,6 +118,19 @@ body {
   font-size: 0;
 }
 
+.results-carousel .item h4 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+  color: #000;
+}
+
+.results-carousel img {
+  max-height: 300px;
+  width: auto;
+  object-fit: contain;
+}
+
 .results-carousel video {
   margin: 0;
 }
@@ -132,6 +145,7 @@ body {
   width: 100%;
   border-radius: 5px;
 }
+
 
 .interpolation-video-column {}
 
@@ -149,4 +163,16 @@ body {
 
 #interpolation-image-wrapper img {
   border-radius: 5px;
+}
+
+.content-wrapper {
+  width: 90%;          /* ⭐ 여기서 통일 */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content-wrapper img {
+  width: 100%;         /* ⭐ 부모 기준으로 맞춤 */
+  height: auto;
+  display: block;
 }
