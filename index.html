@@ -1,6 +1,5 @@
 <!DOCTYPE html>
----
----
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -269,26 +268,27 @@ margin: 1px 1px;
   padding-bottom: 8px;
 }
 
-.example-group .col-labels {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 10px;
-  padding: 6px 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.example-group .col-labels span {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: #333;
-  flex: 1;
-  text-align: center;
-}
-
 .example-group .img-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  column-gap: 14px;
+  row-gap: 14px;
+}
+
+.example-group .col-labels {
+  display: flex;
+  justify-content: space-around;
+  padding: 4px 0 6px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: -4px;
+}
+
+.example-group .col-labels span {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #444;
+  flex: 1;
+  text-align: center;
 }
 
 .example-group img {
@@ -449,11 +449,9 @@ margin: 1px 1px;
 
 <section class="section pt-2 pb-5">
   <div class="example-group">
-    <div class="col-labels">
-      <span>SD3-M</span>
-      <span>SD3-M + <strong>FDS</strong></span>
-    </div>
     <div class="img-grid">
+      <div class="col-labels"><span>SD3-M</span><span>SD3-M + <strong>FDS</strong></span></div>
+      <div class="col-labels"><span>SD3-M</span><span>SD3-M + <strong>FDS</strong></span></div>
       <img src="static/images/text-to-image/1_1.png" alt="text-to-image example 1">
       <img src="static/images/text-to-image/1_2.png" alt="text-to-image example 2">
       <img src="static/images/text-to-image/1_3.png" alt="text-to-image example 3">
@@ -483,12 +481,9 @@ margin: 1px 1px;
 
 <section class="section pt-2 pb-5">
   <div class="example-group">
-    <div class="col-labels">
-      <span>Distorted</span>
-      <span>TFG</span>
-      <span>TFG + <strong>FDS</strong></span>
-    </div>
     <div class="img-grid">
+      <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
+      <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
       <img src="static/images/gaussian_deblur/2_1.png" alt="gaussian deblur example 1">
       <img src="static/images/gaussian_deblur/2_2.png" alt="gaussian deblur example 2">
       <img src="static/images/gaussian_deblur/2_3.png" alt="gaussian deblur example 3">
@@ -513,12 +508,9 @@ margin: 1px 1px;
 
 <section class="section pt-2 pb-5">
   <div class="example-group">
-    <div class="col-labels">
-      <span>Distorted</span>
-      <span>TFG</span>
-      <span>TFG + <strong>FDS</strong></span>
-    </div>
     <div class="img-grid">
+      <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
+      <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
       <img src="static/images/super_resolution/3_1.png" alt="super resolution example 1">
       <img src="static/images/super_resolution/3_2.png" alt="super resolution example 2">
       <img src="static/images/super_resolution/3_3.png" alt="super resolution example 3">
