@@ -400,30 +400,34 @@ margin: 1px 1px;
 
 <section class="hero is-light is-small">
     <div class="hero-body">
-        <!-- <h2 class="title is-3 has-text-centered">tl; dr</h2> -->
         <div class="container is-max-desktop has-text-centered">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
           <p>
             Flow Matching models a target distribution by learning a marginal velocity field, defined as the average of sample-wise velocities connecting each sample from a simple prior to the target data.
-            When multiple sample-wise velocities conflict at the same intermediate state, this averaged velocity can misguide samples toward low-density regions, leading to  degraded generation quality. 
+            When multiple sample-wise velocities conflict at the same intermediate state, this averaged velocity can misguide samples toward low-density regions, leading to  degraded generation quality.
             To address this issue, we propose <strong>Flow Divergence Sampler (FDS)</strong>, a training-free framework by refining intermediate states before each solver step.
             Our key finding reveals that the severity of this misguidance is quantified by the divergence of the marginal velocity field that is readily computable during inference with a well-optimized model.
-            
-            FDS exploits this signal to steer states toward less ambiguous regions. 
+
+            FDS exploits this signal to steer states toward less ambiguous regions.
             As a plug-and-play framework compatible with standard solvers and off-the-shelf flow backbones, FDS consistently improves fidelity across various generation tasks including text-to-image synthesis, and inverse problems.
           </p>
-
-          <div class="content has-text-centered mt-5">
-              <img src="./static/images/divergence_figure1_v2.png" style="max-width:860px; width:100%; border-radius:6px;"/>
           </div>
-          <p class="is-size-6 has-text-grey mt-2">
-            An overview of FDS. Our framework refines intermediate states to avoid high-discrepancy regions.
-            In standard settings, severely conflicting sample-wise velocities can drive the marginal velocity toward low-density regions, leading to degraded samples (red cross).
-            To counteract this, our framework effectively steers the trajectory toward a reliable, low-discrepancy region (blue circle).
-          </p>
         </div>
     </div>
+</section>
+
+<section class="section" style="background:#ffffff;">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="content has-text-centered">
+      <img src="./static/images/divergence_figure1_v2.png" style="max-width:860px; width:100%; border-radius:6px;"/>
+    </div>
+    <p class="is-size-6 has-text-grey mt-2">
+      An overview of FDS. Our framework refines intermediate states to avoid high-discrepancy regions.
+      In standard settings, severely conflicting sample-wise velocities can drive the marginal velocity toward low-density regions, leading to degraded samples (red cross).
+      To counteract this, our framework effectively steers the trajectory toward a reliable, low-discrepancy region (blue circle).
+    </p>
+  </div>
 </section>
 
 
