@@ -275,6 +275,15 @@ margin: 1px 1px;
   row-gap: 14px;
 }
 
+.example-group .task-title {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #bbb;
+}
+
 .example-group .col-labels {
   display: flex;
   justify-content: space-around;
@@ -425,7 +434,7 @@ margin: 1px 1px;
           <h3 class="title is-5">
             FDS successfully synthesizes fine-grained details that a naive high-NFE baseline cannot produce.<br>
             There are following examples for 
-            <a href="#text-to-image">text-to-image</a>, <a href="#gaussian-deblur">gaussian deblur</a>, and <a href="#super-resolution">super resolution</a> tasks, with and without FDS</h3>
+            <a href="#text-to-image">text-to-image</a> and <a href="#inverse-problems">inverse problems</a> (gaussian deblur &amp; super resolution) tasks, with and without FDS</h3>
           </h3>
           <div class="content has-text-centered">
               <img src="./static/images/fds_qual_main.png" class="interpolation-image"/>
@@ -468,12 +477,12 @@ margin: 1px 1px;
 
 <hr class="viewport-line">
 
-<section class="section py-2" id="gaussian-deblur">
+<section class="section py-2" id="inverse-problems">
   <div class="container has-text-centered">
     <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
-      <h3 class="title is-3 mb-2">Gaussian Deblur</h3>
+      <h3 class="title is-3 mb-2">Inverse Problems</h3>
       <p class="mt-0 mb-0">
-        FDS impoves visual quality of gaussian deblur.
+        FDS improves visual quality of gaussian deblur and super resolution.
       </p>
     </div>
   </div>
@@ -482,39 +491,19 @@ margin: 1px 1px;
 <section class="section pt-2 pb-5">
   <div class="example-group">
     <div class="img-grid">
+      <div class="task-title">Gaussian Deblur</div>
+      <div class="task-title">Super Resolution</div>
       <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
       <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
       <img src="static/images/gaussian_deblur/2_1.png" alt="gaussian deblur example 1">
-      <img src="static/images/gaussian_deblur/2_2.png" alt="gaussian deblur example 2">
-      <img src="static/images/gaussian_deblur/2_3.png" alt="gaussian deblur example 3">
-      <img src="static/images/gaussian_deblur/2_4.png" alt="gaussian deblur example 4">
-      <img src="static/images/gaussian_deblur/2_5.png" alt="gaussian deblur example 5">
-    </div>
-  </div>
-</section>
-
-<hr class="viewport-line">
-
-<section class="section py-2" id="super-resolution">
-  <div class="container has-text-centered">
-    <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
-      <h3 class="title is-3 mb-2">Super Resolution</h3>
-      <p class="mt-0 mb-0">
-        FDS impoves visual quality of super resolution
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="section pt-2 pb-5">
-  <div class="example-group">
-    <div class="img-grid">
-      <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
-      <div class="col-labels"><span>Distorted</span><span>TFG</span><span>TFG + <strong>FDS</strong></span></div>
       <img src="static/images/super_resolution/3_1.png" alt="super resolution example 1">
+      <img src="static/images/gaussian_deblur/2_2.png" alt="gaussian deblur example 2">
       <img src="static/images/super_resolution/3_2.png" alt="super resolution example 2">
+      <img src="static/images/gaussian_deblur/2_3.png" alt="gaussian deblur example 3">
       <img src="static/images/super_resolution/3_3.png" alt="super resolution example 3">
+      <img src="static/images/gaussian_deblur/2_4.png" alt="gaussian deblur example 4">
       <img src="static/images/super_resolution/3_4.png" alt="super resolution example 4">
+      <img src="static/images/gaussian_deblur/2_5.png" alt="gaussian deblur example 5">
       <img src="static/images/super_resolution/3_5.png" alt="super resolution example 5">
     </div>
   </div>
