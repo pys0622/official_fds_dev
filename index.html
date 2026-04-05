@@ -265,15 +265,6 @@ margin: 1px 1px;
 
   </style>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      bulmaCarousel.attach('#results-carousel', {
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        infinite: true,
-      });
-    });
-  </script>
 
 
 </head>
@@ -421,19 +412,29 @@ margin: 1px 1px;
   </div>
 </section>
 
-<div id=text-to-image-container></div>
-<script>
-fetch('sections/text_to_image.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('text-to-image-container').innerHTML = data;
-    bulmaCarousel.attach('#results-carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      infinite: true,
-    });
-  });
-</script>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h3 class="title is-4 has-text-centered">SD3-M + FDS</h3>
+      <div style="max-width: 90%; margin: 0 auto;">
+        <div class="columns is-mobile is-gapless has-text-centered is-vcentered mb-2">
+          <div class="column"><h4>SD3-M</h4></div>
+          <div class="column"><h4>SD3-M + <strong>FDS</strong></h4></div>
+        </div>
+        <img src="static/images/text-to-image/1_1.png" style="width:100%; margin-bottom:16px;" alt="img1">
+        <img src="static/images/text-to-image/1_2.png" style="width:100%; margin-bottom:16px;" alt="img2">
+        <img src="static/images/text-to-image/1_3.png" style="width:100%; margin-bottom:16px;" alt="img3">
+        <img src="static/images/text-to-image/1_4.png" style="width:100%; margin-bottom:16px;" alt="img4">
+        <img src="static/images/text-to-image/1_5.png" style="width:100%; margin-bottom:16px;" alt="img5">
+        <img src="static/images/text-to-image/1_6.png" style="width:100%; margin-bottom:16px;" alt="img6">
+        <img src="static/images/text-to-image/1_7.png" style="width:100%; margin-bottom:16px;" alt="img7">
+        <img src="static/images/text-to-image/1_8.png" style="width:100%; margin-bottom:16px;" alt="img8">
+        <img src="static/images/text-to-image/1_9.png" style="width:100%; margin-bottom:16px;" alt="img9">
+        <img src="static/images/text-to-image/1_10.png" style="width:100%; margin-bottom:16px;" alt="img10">
+      </div>
+    </div>
+  </div>
+</section>
 
 <hr class="viewport-line">
 
@@ -448,20 +449,25 @@ fetch('sections/text_to_image.html')
   </div>
 </section>
 
-<div id=gaussian-deblur-container></div>
-<script>
-fetch('./sections/gaussian_deblur.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('gaussian-deblur-container').innerHTML = data;
-
-    bulmaCarousel.attach('#results-carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      infinite: true,
-    });
-  });
-</script>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h3 class="title is-4 has-text-centered">TFG + FDS</h3>
+      <div style="max-width: 90%; margin: 0 auto;">
+        <div class="columns is-mobile is-gapless has-text-centered is-vcentered mb-2">
+          <div class="column"><h4>Distorted</h4></div>
+          <div class="column"><h4>TFG</h4></div>
+          <div class="column"><h4>TFG + <strong>FDS</strong></h4></div>
+        </div>
+        <img src="static/images/gaussian_deblur/2_1.png" style="width:100%; margin-bottom:16px;" alt="img1">
+        <img src="static/images/gaussian_deblur/2_2.png" style="width:100%; margin-bottom:16px;" alt="img2">
+        <img src="static/images/gaussian_deblur/2_3.png" style="width:100%; margin-bottom:16px;" alt="img3">
+        <img src="static/images/gaussian_deblur/2_4.png" style="width:100%; margin-bottom:16px;" alt="img4">
+        <img src="static/images/gaussian_deblur/2_5.png" style="width:100%; margin-bottom:16px;" alt="img5">
+      </div>
+    </div>
+  </div>
+</section>
 
 <hr class="viewport-line">
 
@@ -476,20 +482,25 @@ fetch('./sections/gaussian_deblur.html')
   </div>
 </section>
 
-<div id=super-resoultion-container></div>
-<script>
-fetch('./sections/super_resolution.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('super-resoultion-container').innerHTML = data;
-
-    bulmaCarousel.attach('#results-carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      infinite: true,
-    });
-  });
-</script>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h3 class="title is-4 has-text-centered">TFG + FDS</h3>
+      <div style="max-width: 90%; margin: 0 auto;">
+        <div class="columns is-mobile is-gapless has-text-centered is-vcentered mb-2">
+          <div class="column"><h4>Distorted</h4></div>
+          <div class="column"><h4>TFG</h4></div>
+          <div class="column"><h4>TFG + <strong>FDS</strong></h4></div>
+        </div>
+        <img src="static/images/super_resolution/3_1.png" style="width:100%; margin-bottom:16px;" alt="img1">
+        <img src="static/images/super_resolution/3_2.png" style="width:100%; margin-bottom:16px;" alt="img2">
+        <img src="static/images/super_resolution/3_3.png" style="width:100%; margin-bottom:16px;" alt="img3">
+        <img src="static/images/super_resolution/3_4.png" style="width:100%; margin-bottom:16px;" alt="img4">
+        <img src="static/images/super_resolution/3_5.png" style="width:100%; margin-bottom:16px;" alt="img5">
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
