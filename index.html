@@ -397,15 +397,15 @@ margin: 1px 1px;
 
       <div class="container content has-text-centered">
           <h3 class="title is-5">
-            FDS successfully synthesizes fine-grained details that a naive high-NFE baseline cannot produce.
-            <br><br>
-            <!--Todo a href="#one-to-one">one-to-one</a>, <a href="#one-to-many">one-to-many</a>, and <a href="#many-to-one">many-to-one</a> generation.</h3-->
+            FDS successfully synthesizes fine-grained details that a naive high-NFE baseline cannot produce.<br>
+            There are following examples for 
+            <a href="#text-to-image">text-to-image</a>, <a href="#gaussian-deblur">gaussian deblur</a>, and <a href="#super-resolution">super resolution</a> tasks, with and without FDS</h3>
+          </h3>
           <div class="content has-text-centered">
               <img src="./static/images/fds_qual_main.png" class="interpolation-image"/>
           </div>
       </div>
     <div class="columns is-centered">
-
   </div>
 </section>
 
@@ -437,7 +437,7 @@ fetch('sections/text_to_image.html')
 
 <hr class="viewport-line">
 
-<section class="section py-2" id="text-to-image">
+<section class="section py-2" id="gaussian-deblur">
   <div class="container has-text-centered">
     <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
       <h3 class="title is-3 mb-2">Gaussian Deblur</h3>
@@ -462,6 +462,35 @@ fetch('./sections/gaussian_deblur.html')
     });
   });
 </script>
+
+<hr class="viewport-line">
+
+<section class="section py-2" id="super-resolution">
+  <div class="container has-text-centered">
+    <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
+      <h3 class="title is-3 mb-2">Super Resolution</h3>
+      <p class="mt-0 mb-0">
+        FDS impoves visual quality of super resolution
+      </p>
+    </div>
+  </div>
+</section>
+
+<div id=super-resoultion-container></div>
+<script>
+fetch('./sections/super_resolution.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('super-resoultion-container').innerHTML = data;
+
+    bulmaCarousel.attach('#results-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      infinite: true,
+    });
+  });
+</script>
+
 
 
 <section class="section">
