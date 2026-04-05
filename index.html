@@ -392,15 +392,15 @@ margin: 1px 1px;
       </div>
     </div>
     <div class="hero-body">
-      <!-- <h2 class="title is-3 has-text-centered">tl; dr</h2> -->
       <div class="container is-max-desktop has-text-centered">
-          <h3 class="title is-5">FDS: We propose a training-free divergence-based flow matching sampler to refine generation.</h3> 
-          <div class="content has-text-centered">
-              <img src="./static/images/divergence_figure1_v2.png" class="interpolation-image"/>
+          <h3 class="title is-5">TL;DR: We propose Flow Divergence Sampler (FDS), a training-free, divergence-guided sampler for flow matching that refines intermediate states to improve generation quality.</h3>
+          <div class="content has-text-centered mt-4">
+              <img src="./static/images/fds_qual_main.png" class="interpolation-image" style="max-width:860px; width:100%; border-radius:6px;"/>
           </div>
-          An overview of FDS.  Our framework refines intermediate states to avoid high-discrepancy regions. 
-          In standard settings, severely conflicting sample-wise velocities can drive the marginal velocity toward low-density region, leading to degraded samples (red cross).
-          To counteract this, our framework effectively steers the trajectory toward a reliable, low-discrepancy region (blue circle).
+          <p class="is-size-6 has-text-grey mt-2">
+            FDS successfully synthesizes fine-grained details across
+            <a href="#text-to-image">text-to-image</a> and <a href="#inverse-problems">inverse problem</a> tasks.
+          </p>
       </div>
     </div>
   </div>
@@ -423,25 +423,16 @@ margin: 1px 1px;
             As a plug-and-play framework compatible with standard solvers and off-the-shelf flow backbones, FDS consistently improves fidelity across various generation tasks including text-to-image synthesis, and inverse problems.
           </p>
 
+          <div class="content has-text-centered mt-5">
+              <img src="./static/images/divergence_figure1_v2.png" style="max-width:860px; width:100%; border-radius:6px;"/>
+          </div>
+          <p class="is-size-6 has-text-grey mt-2">
+            An overview of FDS. Our framework refines intermediate states to avoid high-discrepancy regions.
+            In standard settings, severely conflicting sample-wise velocities can drive the marginal velocity toward low-density regions, leading to degraded samples (red cross).
+            To counteract this, our framework effectively steers the trajectory toward a reliable, low-discrepancy region (blue circle).
+          </p>
         </div>
     </div>
-</section>
-
-<section class="section">
-  <div class="container">
-
-      <div class="container content has-text-centered">
-          <h3 class="title is-5">
-            FDS successfully synthesizes fine-grained details that a naive high-NFE baseline cannot produce.<br>
-            There are following examples for 
-            <a href="#text-to-image">text-to-image</a> and <a href="#inverse-problems">inverse problems</a> (gaussian deblur &amp; super resolution) tasks, with and without FDS</h3>
-          </h3>
-          <div class="content has-text-centered">
-              <img src="./static/images/fds_qual_main.png" class="interpolation-image"/>
-          </div>
-      </div>
-    <div class="columns is-centered">
-  </div>
 </section>
 
 
