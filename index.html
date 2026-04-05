@@ -415,7 +415,7 @@ margin: 1px 1px;
     <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
       <h3 class="title is-3 mb-2">Text-to-Image Generation</h3>
       <p class="mt-0 mb-0">
-        FDS impoves visual quality of text-to image generation.
+        FDS impoves visual quality of text-to-image generation.
       </p>
     </div>
   </div>
@@ -427,42 +427,41 @@ fetch('sections/text_to_image.html')
   .then(res => res.text())
   .then(data => {
     document.getElementById('text-to-image-container').innerHTML = data;
+    bulmaCarousel.attach('#results-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      infinite: true,
+    });
   });
 </script>
 
 <hr class="viewport-line">
 
-
-
-
-
-<!-- <hr class="viewport-line"> -->
-
-
-
-<section class="section py-2" id="one-to-one">
+<section class="section py-2" id="text-to-image">
   <div class="container has-text-centered">
     <div class="box" style="background:#fbfbfb; border:1px solid rgba(0,0,0,0.06); box-shadow:none;">
-      <h3 class="title is-3 mb-2">subtitle</h3>
+      <h3 class="title is-3 mb-2">Gaussian Deblur</h3>
       <p class="mt-0 mb-0">
-        FDS ... 
+        FDS impoves visual quality of gaussian deblur.
       </p>
     </div>
   </div>
 </section>
 
-<!-- <hr class="viewport-line"> -->
+<div id=gaussian-deblur-container></div>
+<script>
+fetch('./sections/gaussian_deblur.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('gaussian-deblur-container').innerHTML = data;
 
-
-
-
-
-
-
-
-
-
-<hr class="viewport-line">
+    bulmaCarousel.attach('#results-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      infinite: true,
+    });
+  });
+</script>
 
 
 <section class="section">
