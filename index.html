@@ -263,6 +263,36 @@ margin: 1px 1px;
   line-height: 0.1;
 }
 
+.example-group {
+  max-width: 860px;
+  margin: 0 auto;
+  padding-bottom: 8px;
+}
+
+.example-group .col-labels {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.example-group .col-labels span {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+.example-group img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+  margin-bottom: 18px;
+}
+
   </style>
 
 
@@ -412,27 +442,22 @@ margin: 1px 1px;
   </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h3 class="title is-4 has-text-centered">SD3-M + FDS</h3>
-      <div style="max-width: 90%; margin: 0 auto;">
-        <div class="columns is-mobile is-gapless has-text-centered is-vcentered mb-2">
-          <div class="column"><h4>SD3-M</h4></div>
-          <div class="column"><h4>SD3-M + <strong>FDS</strong></h4></div>
-        </div>
-        <img src="static/images/text-to-image/1_1.png" style="width:100%; margin-bottom:16px;" alt="img1">
-        <img src="static/images/text-to-image/1_2.png" style="width:100%; margin-bottom:16px;" alt="img2">
-        <img src="static/images/text-to-image/1_3.png" style="width:100%; margin-bottom:16px;" alt="img3">
-        <img src="static/images/text-to-image/1_4.png" style="width:100%; margin-bottom:16px;" alt="img4">
-        <img src="static/images/text-to-image/1_5.png" style="width:100%; margin-bottom:16px;" alt="img5">
-        <img src="static/images/text-to-image/1_6.png" style="width:100%; margin-bottom:16px;" alt="img6">
-        <img src="static/images/text-to-image/1_7.png" style="width:100%; margin-bottom:16px;" alt="img7">
-        <img src="static/images/text-to-image/1_8.png" style="width:100%; margin-bottom:16px;" alt="img8">
-        <img src="static/images/text-to-image/1_9.png" style="width:100%; margin-bottom:16px;" alt="img9">
-        <img src="static/images/text-to-image/1_10.png" style="width:100%; margin-bottom:16px;" alt="img10">
-      </div>
+<section class="section pt-2 pb-5">
+  <div class="example-group">
+    <div class="col-labels">
+      <span>SD3-M</span>
+      <span>SD3-M + <strong>FDS</strong></span>
     </div>
+    <img src="static/images/text-to-image/1_1.png" alt="text-to-image example 1">
+    <img src="static/images/text-to-image/1_2.png" alt="text-to-image example 2">
+    <img src="static/images/text-to-image/1_3.png" alt="text-to-image example 3">
+    <img src="static/images/text-to-image/1_4.png" alt="text-to-image example 4">
+    <img src="static/images/text-to-image/1_5.png" alt="text-to-image example 5">
+    <img src="static/images/text-to-image/1_6.png" alt="text-to-image example 6">
+    <img src="static/images/text-to-image/1_7.png" alt="text-to-image example 7">
+    <img src="static/images/text-to-image/1_8.png" alt="text-to-image example 8">
+    <img src="static/images/text-to-image/1_9.png" alt="text-to-image example 9">
+    <img src="static/images/text-to-image/1_10.png" alt="text-to-image example 10">
   </div>
 </section>
 
@@ -449,23 +474,18 @@ margin: 1px 1px;
   </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h3 class="title is-4 has-text-centered">TFG + FDS</h3>
-      <div style="max-width: 90%; margin: 0 auto;">
-        <div class="columns is-mobile is-gapless has-text-centered is-vcentered mb-2">
-          <div class="column"><h4>Distorted</h4></div>
-          <div class="column"><h4>TFG</h4></div>
-          <div class="column"><h4>TFG + <strong>FDS</strong></h4></div>
-        </div>
-        <img src="static/images/gaussian_deblur/2_1.png" style="width:100%; margin-bottom:16px;" alt="img1">
-        <img src="static/images/gaussian_deblur/2_2.png" style="width:100%; margin-bottom:16px;" alt="img2">
-        <img src="static/images/gaussian_deblur/2_3.png" style="width:100%; margin-bottom:16px;" alt="img3">
-        <img src="static/images/gaussian_deblur/2_4.png" style="width:100%; margin-bottom:16px;" alt="img4">
-        <img src="static/images/gaussian_deblur/2_5.png" style="width:100%; margin-bottom:16px;" alt="img5">
-      </div>
+<section class="section pt-2 pb-5">
+  <div class="example-group">
+    <div class="col-labels">
+      <span>Distorted</span>
+      <span>TFG</span>
+      <span>TFG + <strong>FDS</strong></span>
     </div>
+    <img src="static/images/gaussian_deblur/2_1.png" alt="gaussian deblur example 1">
+    <img src="static/images/gaussian_deblur/2_2.png" alt="gaussian deblur example 2">
+    <img src="static/images/gaussian_deblur/2_3.png" alt="gaussian deblur example 3">
+    <img src="static/images/gaussian_deblur/2_4.png" alt="gaussian deblur example 4">
+    <img src="static/images/gaussian_deblur/2_5.png" alt="gaussian deblur example 5">
   </div>
 </section>
 
@@ -482,23 +502,18 @@ margin: 1px 1px;
   </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h3 class="title is-4 has-text-centered">TFG + FDS</h3>
-      <div style="max-width: 90%; margin: 0 auto;">
-        <div class="columns is-mobile is-gapless has-text-centered is-vcentered mb-2">
-          <div class="column"><h4>Distorted</h4></div>
-          <div class="column"><h4>TFG</h4></div>
-          <div class="column"><h4>TFG + <strong>FDS</strong></h4></div>
-        </div>
-        <img src="static/images/super_resolution/3_1.png" style="width:100%; margin-bottom:16px;" alt="img1">
-        <img src="static/images/super_resolution/3_2.png" style="width:100%; margin-bottom:16px;" alt="img2">
-        <img src="static/images/super_resolution/3_3.png" style="width:100%; margin-bottom:16px;" alt="img3">
-        <img src="static/images/super_resolution/3_4.png" style="width:100%; margin-bottom:16px;" alt="img4">
-        <img src="static/images/super_resolution/3_5.png" style="width:100%; margin-bottom:16px;" alt="img5">
-      </div>
+<section class="section pt-2 pb-5">
+  <div class="example-group">
+    <div class="col-labels">
+      <span>Distorted</span>
+      <span>TFG</span>
+      <span>TFG + <strong>FDS</strong></span>
     </div>
+    <img src="static/images/super_resolution/3_1.png" alt="super resolution example 1">
+    <img src="static/images/super_resolution/3_2.png" alt="super resolution example 2">
+    <img src="static/images/super_resolution/3_3.png" alt="super resolution example 3">
+    <img src="static/images/super_resolution/3_4.png" alt="super resolution example 4">
+    <img src="static/images/super_resolution/3_5.png" alt="super resolution example 5">
   </div>
 </section>
 
